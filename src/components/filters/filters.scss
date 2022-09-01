@@ -1,0 +1,45 @@
+.products {
+    padding: 60px  0;
+    &__filters {
+        display:flex;
+        justify-content: center;
+        &__item {
+            margin-right: 80px;
+            display: flex;
+            align-items: center;
+            &:last-child {
+                margin-right: 0;
+            }
+            &__text {
+                margin-right: 20px;
+            }
+            &__input {
+                width: 180px;
+                height: 30px;   
+                padding: 5px 0 5px 25px;
+                background: #FFFFFF;
+                box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+                border-radius: 4px;
+                &::placeholder {
+                    // font-size: 400px;
+                    font-family: 'Merienda', cursive;
+                    // padding-left: 20px;
+                }
+            }
+            &__button {
+                font-family: 'Merienda', cursive;
+                width: 75px;
+                height: 30px;
+                background-color: #fff;
+                margin-right: 5px;
+                cursor: pointer;
+                &:hover {
+                    background-color: lightgrey;
+                }
+                *:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
