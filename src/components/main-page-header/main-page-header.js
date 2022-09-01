@@ -1,5 +1,6 @@
-import './main-page-header.scss';
+import { NavLink } from 'react-router-dom';
 
+import './main-page-header.scss';
 import coffeSeeds from '../../resources/icons/2-white-seeds.png'
 
 const MainPageHeader = () => {
@@ -9,11 +10,16 @@ const MainPageHeader = () => {
                 <div class = "header">
                     <nav class="header__nav">
                         <div class="header__nav__item">
-                            <img src = {coffeSeeds} alt="coffee-seed"/>                        
-                            Coffee house
+                            <NavLink className={({isActive}) => isActive ? 'link' : null} to = "/">
+                                <img src = {coffeSeeds} alt="coffee-seed"/>                        
+                                Coffee house
+                            </NavLink>
                         </div>
-                        <div class="header__nav__item">Our coffee</div>
-                        <div class="header__nav__item">For your pleasure</div>
+                        <NavLink className={({isActive}) => isActive ? 'link' : null } to = "/coffee-list">
+                            <div class="header__nav__item">Our coffee</div>
+                        </NavLink>
+                        
+                        {/* <div class="header__nav__item">For your pleasure</div> */}
                     </nav>
                     <h1 class="title">Everything You Love About Coffee</h1>
                     <div class="header__seeds">
