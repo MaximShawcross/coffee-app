@@ -1,62 +1,58 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectAll, coffeeFetched, coffeeFetching, coffeeFetchingError,} from "./coffeSlice";
 import { fetchCoffeeList } from "./coffeSlice";
+
+import CoffeeListItem from "../coffee-list-item/coffee-list-item";
+import Spinner from "../spinner/spinner";
 
 import './coffee-list.scss';
 
 const CoffeeList = () => {
-    // const coffee = useSelector(selectAll);
+    const coffee = useSelector(state => state.coffee);
+    const coffeeLoadingStatus = useSelector(state => state.coffee.coffeeLoadingStatus);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchCoffeeList())
+        dispatch(fetchCoffeeList());
         // eslint-disable-next-line
     }, []);
+
+    if (coffeeLoadingStatus === "error"){
+        return <h5 className = "error">something wrong!</h5>
+    }
+
+    const renderItems = (arr, counter) => {
+        if (arr.length === 0) {
+            return <Spinner/>
+        } 
+
+        const items = Object.values(arr.entities);
+
+        return items.map((item, i) => {
+
+            if (i < 17) {
+                // let ingredients = item.ingridients.join()               
+                const ingredients = item.ingredients.join(", ");
+
+                return (
+                    <CoffeeListItem image = {item.image} title = {item.title} ingredients = {ingredients}/>
+                )   
+            }
+            
+        })
+    }
+
+    const elements = renderItems(coffee);
 
     return (
         <section className="coffee">
             <div className="container">
                 <ul className="coffee__list">
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    <li className="coffee__list__item">
-                        <img src="resources/list-items/item_1.png" alt="" className="coffee__list__item__img"/>
-                        <h2 className="coffee__list__item__name">AROMISTICO Coffee 1 kg</h2>
-                        <div className="coffee__list__item__country">Kenya</div>
-                        <div className="coffee__list__item__price">6.99$</div>
-                    </li>
-                    
+                    {elements}
                 </ul>
+                {/* <button className="button">Click me!</button> */}
             </div>
         </section>
     )

@@ -8,7 +8,7 @@ const initialState = coffeAdapter.getInitialState({
 })
 
 export const fetchCoffeeList = createAsyncThunk(
-    'coffe/fetchCoffee',
+    'coffee/fetchCoffee',
     () => {
         const { request } = useHttp();
         return request('https://api.sampleapis.com/coffee/hot') 
@@ -16,7 +16,7 @@ export const fetchCoffeeList = createAsyncThunk(
 )
 
 const coffeeListSlice = createSlice({
-    name: 'coffeeList',
+    name: 'coffee',
     initialState,
     reducers: {
         coffeeFetchingError: (state) => { state.coffeeLoadingStatus = 'error'},
@@ -34,7 +34,7 @@ const coffeeListSlice = createSlice({
                 state.coffeeLoadingStatus = 'loading';
             })
             .addCase(fetchCoffeeList.fulfilled, (state, action) => {
-                state.coffeeLoadingStatus = 'loading';
+                state.coffeeLoadingStatus = 'idle';
                 coffeAdapter.setAll(state, action.payload)
             }) 
             .addCase(fetchCoffeeList.rejected, state => {

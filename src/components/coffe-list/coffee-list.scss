@@ -9,7 +9,7 @@
         width: 800px;
         &__item {
             width: 220px;   
-            height: 240px;
+            min-height: 240px;
             font-weight: 400;
             color: #000000;
             padding: 37px 26px 22px 26px;
@@ -49,4 +49,24 @@
             }
         }
     }
+}
+
+.button {
+    display: block;
+    font-family: 'Merienda';
+    width: 120px;
+    height: 30px;
+    // background: url("desk-791178_1920.jpg");
+    background-color: rgba(28,28,28,0);
+    font-weight: 700;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:solid 1px black;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+.error {
+    text-align: center;
 }
