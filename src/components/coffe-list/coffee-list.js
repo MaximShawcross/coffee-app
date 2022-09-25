@@ -19,7 +19,9 @@ const CoffeeList = () => {
         // eslint-disable-next-line
     }, []);
 
-    if (coffeeLoadingStatus === "error"){
+    if(coffeeLoadingStatus === "loading") {
+        return <Spinner/>
+    } else if (coffeeLoadingStatus === "error"){
         return <h5 className = "error">something wrong!</h5>
     }
 
@@ -36,9 +38,8 @@ const CoffeeList = () => {
                 // let ingredients = item.ingridients.join()               
                 const ingredients = item.ingredients.join(", ");
 
-                return (
-                    <CoffeeListItem image = {item.image} title = {item.title} ingredients = {ingredients}/>
-                )   
+                return <CoffeeListItem image = {item.image} title = {item.title} ingredients = {ingredients}/>
+                   
             }
             
         })

@@ -1,13 +1,14 @@
 .lds-ripple {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 80px;
     height: 80px;
-    margin: 0 auto;  
+    margin: 0 auto;
+    // transform: translateX(-50%)  
   }
   .lds-ripple div {
     position: absolute;
-    right: 1000px;
+    // right: 1000px;
     border: 4px solid black;
     opacity: 1;
     border-radius: 50%;
