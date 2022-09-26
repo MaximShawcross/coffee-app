@@ -1,18 +1,19 @@
 import './about-us.scss';
+import blackSeeds from "../../resources/icons/three-seeds-black.png";
 
 const AboutUs = () => {
 
     return (
-        <section class = "about">
-            <div class="container">
-                <div class="about__title">About Us</div>
-            <div class="about__seeds">
-                <div class="about__seeds__divider"></div>
-                <img src="resources/icons/three-seeds-black.png" alt="" class="about__seeds__img"/>
-                <div class="about__seeds__divider"></div>
+        <section className = "about">
+            <div className="container">
+                <div className="about__title">About Us</div>
+            <div className="about__seeds">
+                <div className="about__seeds__divider"></div>
+                <img src={blackSeeds} alt="" className="about__seeds__img"/>
+                <div className="about__seeds__divider"></div>
             </div>
 
-            <div class="about__text">   Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
+            <div className="about__text">   Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
                 Afraid at highly months do things on at. Situation recommend objection do intention
                 so questions. As greatly removed calling pleased improve an. Last ask him cold feel
                 met spot shy want. Children me laughing we prospect answered followed. At it went

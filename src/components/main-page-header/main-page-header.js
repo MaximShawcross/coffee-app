@@ -2,38 +2,39 @@ import { NavLink } from 'react-router-dom';
 
 import './main-page-header.scss';
 import coffeSeeds from '../../resources/icons/2-white-seeds.png'
+import whiteSeeds from "../../resources/icons/three-seeds.png";
 
 const MainPageHeader = () => {
     return (
         <header>
-            <div class="container">
-                <div class = "header">
-                    <nav class="header__nav">
-                        <div class="header__nav__item">
+            <div className="container">
+                <div className = "header">
+                    <nav className="header__nav">
+                        <div className="header__nav__item">
                             <NavLink className={({isActive}) => isActive ? 'link' : null} to = "/">
                                 <img src = {coffeSeeds} alt="coffee-seed"/>                        
                                 Coffee house
                             </NavLink>
                         </div>
                         <NavLink className={({isActive}) => isActive ? 'link' : null } to = "/coffee-list">
-                            <div class="header__nav__item">Our coffee</div>
+                            <div className="header__nav__item">Our coffee</div>
                         </NavLink>
                         
-                        {/* <div class="header__nav__item">For your pleasure</div> */}
+                        {/* <div className="header__nav__item">For your pleasure</div> */}
                     </nav>
-                    <h1 class="title">Everything You Love About Coffee</h1>
-                    <div class="header__seeds">
-                        <div class="header__seeds__divider"></div>
-                        <img src="resources/icons/three-seeds.png" alt="" class="header__seeds__img"/>
-                        <div class="header__seeds__divider"></div>
+                    <h1 className="title">Everything You Love About Coffee</h1>
+                    <div className="header__seeds">
+                        <div className="header__seeds__divider"></div>
+                        <img src= {whiteSeeds} alt="" className="header__seeds__img"/>
+                        <div className="header__seeds__divider"></div>
                     </div>
 
-                    <div class="header__subheader">
-                        <div class="header__subheader__item">We makes every day full of energy and taste</div>
-                        <div class="header__subheader__item">Want to try our beans?</div>
+                    <div className="header__subheader">
+                        <div className="header__subheader__item">We makes every day full of energy and taste</div>
+                        <div className="header__subheader__item">Want to try our beans?</div>
                     </div>
 
-                    <button class="header__button">
+                    <button className="header__button">
                         More
                     </button>
                 </div>
