@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk , createEntityAdapter} from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
 
-const coffeAdapter= createEntityAdapter();
+const coffeAdapter = createEntityAdapter();
 
 const initialState = coffeAdapter.getInitialState({
     coffeeLoadingStatus: 'idle',
@@ -48,7 +48,8 @@ const {actions, reducer} = coffeeListSlice;
 
 export default reducer;
 
-export const { selectAll } = coffeAdapter.getSelectors(state => state.coffeeList);
+// export const { selectAll } = coffeAdapter.getSelectors(state => state.coffeeList);
+
 
 export const {
     coffeeFetchingError,

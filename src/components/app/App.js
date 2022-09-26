@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { MainPage, CoffeeListPage } from "../../pages";
+import { MainPage, CoffeeListPage, SingleCoffeePage } from "../../pages";
 
 import "./App.scss"
 
@@ -9,7 +9,8 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path = "/" element = {<MainPage/>}/>
-                <Route path = "/coffee-list" element = { <CoffeeListPage/> }/>            
+                <Route path = "/coffee-list" element = { <CoffeeListPage/> }/>
+                <Route path = "/coffee-list/:coffeeId" element = { <SingleCoffeePage/> }/>          
             </Routes>
         </Router>
 

@@ -1,0 +1,48 @@
+.single-coffee {
+    display: flex;
+    padding: 70px 290px 30px 290px;
+
+    &__item {
+        margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        &__title {
+            text-align: center;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 35px;
+        }
+        .header__seeds {
+            margin-top: 21px;
+            &__divider {
+                background-color: black;
+                border: black
+            }
+        }
+        &__text {
+            margin-top: 27px;
+            &__descr {
+                margin-top: 16px;
+            }
+            &__price {
+                margin-top: 17px;
+                &_span {
+                    font-weight: 400;
+                    font-size: 24px;
+                }
+            }
+        }
+        &__img {
+            object-fit: contain;
+            width: 395px;
+            height: 355px;
+        }
+    }:last-child {
+        margin-right: 0;
+    }
+}
+
+.bold { 
+    font-weight: 700;
+    font-size: 15px;
+}
