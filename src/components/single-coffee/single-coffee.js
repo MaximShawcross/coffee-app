@@ -26,11 +26,11 @@ const SingleCoffee = () => {
             .catch(err => console.error(err))
     }, [coffeeId]);
 
-    if( loadingStatus === "loading") {
+    if ( loadingStatus === "loading") {
         return <Spinner/>
     } 
 
-    const {title, description, image} = coffeeItem.coffeeItem;
+    const {title, description, image} = Object.values(coffeeItem.entities)[0];
 
     return (
         <SingleCoffeeView title = {title} description = {description} image = {image}/>

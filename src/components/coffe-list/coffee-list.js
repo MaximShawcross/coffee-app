@@ -32,13 +32,14 @@ const CoffeeList = () => {
         if (arr.length === 0) {
             return <Spinner/>
         } 
+        
         const ids = Object.values(arr.ids);
         const items = Object.values(arr.entities);
 
         return items.map((item, i) => {
 
             if (i < 17) {            
-                const ingredients = item.ingredients.join(", ");
+                const ingredients = item.ingredients[0];
 
                 return (
                     <Link key = {ids[i]} to = {`/coffee-list/${ids[i]}`} > 

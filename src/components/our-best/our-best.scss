@@ -12,30 +12,6 @@
         margin-top: 39px;
         display:flex;
         justify-content: center;
-        &__item {
-            width: 220px;
-            height: 240px;
-            background: url('../../resources/bg/item_bg.png')  center (center / cover) no-repeat;
-            border-radius: 8px;
-            font-weight: 400;
-            font-size: 14px;
-            color: #000000;
-            &:nth-child(2) {
-                margin: 0 71px;
-            }
-            &__img {
-                margin: 22px 34px 22px 34px;
-            }
-            &__descr {
-                
-                line-height: 20px;
-                text-align: center;
-            }
-            &__price {
-                margin-right: 22px;
-                margin-top: 5px;
-                text-align: right;
-            }
-        }
+       
     }
 }

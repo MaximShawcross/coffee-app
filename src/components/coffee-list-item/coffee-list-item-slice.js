@@ -5,7 +5,6 @@ const coffeeItemAdapter = createEntityAdapter();
 
 const initialState = coffeeItemAdapter.getInitialState({
     coffeeItemLoadingStatus: "idle",
-    coffeeItem: {},
 })
 
 export const fetchCoffeeItem = createAsyncThunk(
@@ -21,12 +20,13 @@ const coffeeItemSlice = createSlice({
     initialState,
     reducers: {
         coffeeItemFetched: (state, action) => {
-            coffeeItemAdapter.setAll(state, action.payload)
+            coffeeItemAdapter.upsertOne(state, action.payload);
+            state.coffeeItemLoadingStatus = "idle";
         },
         coffeeItemFetching: (state) => {
             state.coffeeItemLoadingStatus = "loading"
         },
-        coffeeItemFetchingError: (state) => {
+        coffeeItemFetchingError: (state) => { 
             state.coffeeItemLoadingStatus = "error"
         }
     },
@@ -37,13 +37,15 @@ const coffeeItemSlice = createSlice({
             })
             .addCase(fetchCoffeeItem.fulfilled, (state, action) => {
                 state.coffeeItemLoadingStatus = "idle";
-                state.coffeeItem = (state, action.payload);
+                coffeeItemAdapter.upsertOne(state, action.payload);
             })
             .addDefaultCase(() => {});
     }
 }); 
 
 const {actions, reducer} = coffeeItemSlice;
+
+export const {selectAll} = coffeeItemAdapter.getSelectors(state => state.coffeeItem);
 
 export default reducer;
 

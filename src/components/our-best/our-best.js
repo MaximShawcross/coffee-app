@@ -1,6 +1,5 @@
 import './our-best.scss';
-
-import coffeeIcon from "../../resources/list-items/item_2.png";
+import OurBestItem from '../our-best-item/our-best-item';
 
 const OurBest = () => {
     return (
@@ -9,21 +8,9 @@ const OurBest = () => {
                 <div className="best__title">Our best</div>
 
                 <div className="best__container">
-                    <div className="best__container__item">
-                        <img src= {coffeeIcon} className="best__container__item__img" alt="coffee-img"/>
-                        <div className="best__container__item__descr">Solimo Coffee Beans 2 kg</div> 
-                        <div className="best__container__item__price">10.73$</div>
-                    </div>
-                    <div className="best__container__item">
-                        <img src= {coffeeIcon} className="best__container__item__img" alt="coffee-img"/>
-                        <div className="best__container__item__descr">Solimo Coffee Beans 2 kg</div> 
-                        <div className="best__container__item__price">10.73$</div>
-                    </div>
-                    <div className="best__container__item">
-                        <img src={coffeeIcon} className="best__container__item__img" alt="coffee-img"/>
-                        <div className="best__container__item__descr">Solimo Coffee Beans 2 kg</div> 
-                        <div className="best__container__item__price">10.73$</div>
-                    </div>
+                    <OurBestItem/>
+                    <OurBestItem/>
+                    <OurBestItem/>
                 </div>
             </div>
         </section>
