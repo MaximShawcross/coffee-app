@@ -46,7 +46,6 @@ const CoffeeList = () => {
                         <CoffeeListItem id = {ids[i]}  image = {item.image} title = {item.title} ingredients = {ingredients} />                         
                     </Link>               
                 )
-                   
             }
             
         })

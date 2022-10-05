@@ -20,21 +20,21 @@ const SingleCoffee = () => {
         dispatch(coffeeItemFetching());
 
         dispatch(fetchCoffeeItem(coffeeId))
-            .then(item => {
-                dispatch(coffeeItemFetched());
-            })
-            .catch(err => console.error(err))
+        .catch(err => console.error(err))
     }, [coffeeId]);
 
     if ( loadingStatus === "loading") {
         return <Spinner/>
     } 
 
-    const {title, description, image} = Object.values(coffeeItem.entities)[0];
+
+    // console.log(Object.values(coffeeItem.entities).pop());
+    const {title, description, image} = Object.values(coffeeItem.entities).pop();
 
     return (
         <SingleCoffeeView title = {title} description = {description} image = {image}/>
     )
+    
 }
 
 export default SingleCoffee;
