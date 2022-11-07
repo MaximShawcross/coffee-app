@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { selectById } from "../coffe-list/coffeSlice";
@@ -11,13 +11,11 @@ import './single-coffee.scss';
 
 const SingleCoffee = () => {
     const {coffeeId} = useParams();
-    console.log(coffeeId)
 
     const coffeeItem = useSelector(state => selectById(state, coffeeId));
-    const loadingStatus = useSelector( state => state.coffeeItem.coffeeItemLoadingStatus);
+    const loadingStatus = useSelector( state => state.coffee.coffeeLoadingStatus);
     
     useEffect(() => { 
-        // dispatch(coffeeItemFetching());
         console.log(coffeeItem);
     }, [coffeeItem]);
 
@@ -27,10 +25,7 @@ const SingleCoffee = () => {
 
     const {title, description, image} = coffeeItem;
 // 
-    return (
-        <SingleCoffeeView title = {title} description = {description} image = {image} />
-        )
-    
+    return ( <SingleCoffeeView title = {title} description = {description} image = {image} /> );
 }
 
 export default SingleCoffee;

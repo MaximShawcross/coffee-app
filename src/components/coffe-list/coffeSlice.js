@@ -5,6 +5,7 @@ const coffeAdapter = createEntityAdapter();
 
 const initialState = coffeAdapter.getInitialState({
     coffeeLoadingStatus: 'idle',
+    singleCoffeeLoadingStatus: 'idle'
 })
 
 export const fetchCoffeeList = createAsyncThunk(

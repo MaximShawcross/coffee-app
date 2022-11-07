@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { MainPage, CoffeeListPage, SingleCoffeePage } from "../../pages";
+import { MainPage, CoffeeListPage, SingleCoffeePage } from "../pages";
 
 import "./App.scss"
 
