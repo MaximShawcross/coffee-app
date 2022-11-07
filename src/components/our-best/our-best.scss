@@ -1,0 +1,17 @@
+.best {
+    background: url('../../resources/bg/best-bg.png') center (center / cover) no-repeat;
+    padding: 63px 0 127px 0;
+    &__title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        text-align: center;
+        color: #000000;
+    }
+    &__container {
+        margin-top: 39px;
+        display:flex;
+        justify-content: center;
+       
+    }
+}
