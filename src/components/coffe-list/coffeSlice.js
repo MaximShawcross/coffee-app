@@ -48,7 +48,7 @@ const {actions, reducer} = coffeeListSlice;
 
 export default reducer;
 
-export const { selectAll } = coffeAdapter.getSelectors(state => state.coffee);
+export const { selectAll, selectById } = coffeAdapter.getSelectors(state => state.coffee);
 
 
 export const {

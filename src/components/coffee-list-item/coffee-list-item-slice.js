@@ -9,9 +9,10 @@ const initialState = coffeeItemAdapter.getInitialState({
 
 export const fetchCoffeeItem = createAsyncThunk(
     'coffeeItem/fetchCoffeeItem',
-    (id) => {
+    async (id) => {
         const {request} = useHttp();
-        return request(`https://api.sampleapis.com/coffee/hot/${id}`);
+        const response = await request(`https://api.sampleapis.com/coffee/hot/${id}`);
+        return response;
     }
 )
 
@@ -20,14 +21,14 @@ const coffeeItemSlice = createSlice({
     initialState,
     reducers: {
         coffeeItemFetched: (state, action) => {
-            coffeeItemAdapter.upsertOne(state, action.payload);
+            coffeeItemAdapter.setAll(action.payload);
             state.coffeeItemLoadingStatus = "idle";
         },
         coffeeItemFetching: (state) => {
-            state.coffeeItemLoadingStatus = "loading"
+            state.coffeeItemLoadingStatus = "loading";
         },
         coffeeItemFetchingError: (state) => { 
-            state.coffeeItemLoadingStatus = "error"
+            state.coffeeItemLoadingStatus = "error";
         }
     },
     extraReducers: (builder) => {
@@ -37,7 +38,7 @@ const coffeeItemSlice = createSlice({
             })
             .addCase(fetchCoffeeItem.fulfilled, (state, action) => {
                 state.coffeeItemLoadingStatus = "idle";
-                coffeeItemAdapter.upsertOne(state, action.payload);
+                coffeeItemAdapter.setOne(state, action.payload);
             })
             .addDefaultCase(() => {});
     }
@@ -45,7 +46,7 @@ const coffeeItemSlice = createSlice({
 
 const {actions, reducer} = coffeeItemSlice;
 
-export const {selectAll} = coffeeItemAdapter.getSelectors(state => state.coffeeItem);
+export const {selectById: selectCoffeeById} = coffeeItemAdapter.getSelectors(state => state.coffeeItem);
 
 export default reducer;
 
