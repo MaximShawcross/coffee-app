@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -15,10 +14,7 @@ const SingleCoffee = () => {
 
     const coffeeItem = useSelector(state => selectById(state, coffeeId));
     const loadingStatus = useSelector( state => state.coffee.coffeeLoadingStatus);
-    
-    useEffect(() => { 
-        console.log(coffeeItem);
-    }, [coffeeItem]);
+
 
     if ( loadingStatus === "loading") {
         return <Spinner/>
