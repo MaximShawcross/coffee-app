@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { fetchCoffeeList } from "./coffeSlice";
+import { priceGenerator } from "../../utils/price-generator";
 
 import CoffeeListItem from "../coffee-list-item/coffee-list-item";
 import Spinner from "../spinner/spinner";
@@ -28,7 +29,7 @@ const CoffeeList = () => {
     }
 
 
-    const renderItems = (arr, counter) => {
+    const renderItems = (arr) => {
         if (arr.length === 0) {
             return <Spinner/>
         } 
@@ -36,17 +37,19 @@ const CoffeeList = () => {
         const ids = Object.values(arr.ids);
         const items = Object.values(arr.entities);
 
-        return items.map((item, i) => {
+        return items.map((item, i) => {           
+            const ingredients = item.ingredients[0];
+            const price = priceGenerator();
 
-            if (i < 17) {            
-                const ingredients = item.ingredients[0];
-
-                return (
-                    <Link key = {ids[i]} to = {`/coffee-list/${ids[i]}`} > 
-                        <CoffeeListItem id = {ids[i]}  image = {item.image} title = {item.title} ingredients = {ingredients} />                         
-                    </Link>               
-                )
-            }
+            return (
+                <Link key = {ids[i]} to = {`/coffee-list/${ids[i]}`} > 
+                    <CoffeeListItem id = {ids[i]} 
+                        image = {item.image} 
+                        title = {item.title} 
+                        ingredients = {ingredients} 
+                        price = {price} />                         
+                </Link>               
+            )
             
         })
     }
@@ -64,5 +67,6 @@ const CoffeeList = () => {
         </section>
     )
 }
+
 
 export default CoffeeList;

@@ -6,7 +6,6 @@ const OurBest = () => {
         <section className = "best">
             <div className="container">
                 <div className="best__title">Our best</div>
-
                 <div className="best__container">
                     <OurBestItem/>
                     <OurBestItem/>

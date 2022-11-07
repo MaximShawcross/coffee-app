@@ -1,6 +1,6 @@
 import seeds from "../../resources/icons/three-seeds-black.png";
 
-const SingleCoffeeView = ({image, title, description}) => {
+const SingleCoffeeView = ({image, title, description, price}) => {
 
     return (
         <div className="single-coffee">
@@ -17,7 +17,7 @@ const SingleCoffeeView = ({image, title, description}) => {
                 <div className="single-coffee__item__text">
                     <div className="single-coffee__item__text__title"><span className = "bold">{title}</span> </div>
                     <div className="single-coffee__item__text__descr"><span className = "bold">Description: </span>{description}</div>
-                    <div className="single-coffee__item__text__price"><span className = "single-coffee__item__text__price single-coffee__item__text__price_span">Price:</span>  16.99$</div>
+                    <div className="single-coffee__item__text__price"><span className = "single-coffee__item__text__price single-coffee__item__text__price_span">Price:</span>  {`${price}$`}</div>
                 </div>
             </div>
         </div>
