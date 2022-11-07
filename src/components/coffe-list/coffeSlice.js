@@ -16,6 +16,7 @@ export const fetchCoffeeList = createAsyncThunk(
     }
 )
 
+
 const coffeeListSlice = createSlice({
     name: 'coffee',
     initialState,
@@ -50,6 +51,8 @@ const {actions, reducer} = coffeeListSlice;
 export default reducer;
 
 export const { selectAll, selectById } = coffeAdapter.getSelectors(state => state.coffee);
+
+
 
 
 export const {
