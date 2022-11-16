@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchCoffeeList } from "./coffeSlice";
+import { fetchCoffeeList, selectIds } from "./coffeSlice";
 
 import CoffeeListItem from "../coffee-list-item/coffee-list-item";
 import Spinner from "../spinner/spinner";
@@ -29,25 +29,15 @@ const CoffeeList = () => {
     }
 
 
-    const renderItems = (arr, counter) => {
-        if (arr.length === 0) {
-            return <Spinner/>
-        } 
-        
-        const ids = Object.values(arr.ids);
-        const items = Object.values(arr.entities);
+    const renderItems = (arr) => {
 
-        return items.map((item, i) => {
+        return arr.map((id) => {
 
-            if (i < 17) {            
-                const ingredients = item.ingredients[0];
-
-                return (
-                    <Link key = {ids[i]} to = {`/coffee-list/${ids[i]}`} > 
-                        <CoffeeListItem id = {ids[i]}  image = {item.image} title = {item.title} ingredients = {ingredients} />                         
-                    </Link>               
-                )
-            }
+            return (
+                <Link key = {id} to = {`/coffee-list/${id}`} > 
+                    <CoffeeListItem id = {id} coffeeId = {id}  />                         
+                </Link>               
+            )
             
         })
     }

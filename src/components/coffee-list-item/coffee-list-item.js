@@ -7,7 +7,7 @@ import "./coffee-list-item.scss";
 const CoffeeListItem = ({coffeeId}) => {
     const coffee = useSelector(state => selectById(state, coffeeId));
     const {title, image} = coffee;
-    console.log(coffee);
+    
     return (
         <li className="coffee__list__item" key = {coffeeId}>
             <img alt={title} src = {image} className="coffee__list__item__img"/>
