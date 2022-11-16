@@ -11,34 +11,31 @@ import './coffee-list.scss';
 
 const CoffeeList = () => {
     const coffee = useSelector(selectIds);
-    let coffeeLoadingStatus = useSelector(state => state.coffee.coffeeLoadingStatus);
-    // const coffeItem = useSelector(state => state.coffeItem)
+    let loadingStatus = useSelector(state => state.coffee.loadingStatus);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if( coffeeLoadingStatus === "idle") {
+        if( loadingStatus === "idle") {
             dispatch(fetchCoffeeList());
         }
-    }, [coffeeLoadingStatus, dispatch]);
+        
+    }, [loadingStatus, dispatch]);
 
-    if(coffeeLoadingStatus === "loading") {
+    if(loadingStatus === "loading") {
         return <Spinner/>
-    } else if (coffeeLoadingStatus === "error"){
+    } else if (loadingStatus === "error"){
         return <h5 className = "error">something wrong!</h5>
     }
 
 
     const renderItems = (arr) => {
-
         return arr.map((id) => {
-
             return (
                 <Link key = {id} to = {`/coffee-list/${id}`} > 
                     <CoffeeListItem id = {id} coffeeId = {id}  />                         
                 </Link>               
             )
-            
         })
     }
 

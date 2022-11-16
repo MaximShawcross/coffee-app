@@ -1,7 +1,6 @@
 import coffeeIcon from "../../resources/list-items/item_2.png";
 import './our-best-item.scss';
 
-
 const OurBestItem = () => {
     return (
         <div className="best__container__item">

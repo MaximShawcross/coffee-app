@@ -1,48 +1,45 @@
-import { createSlice, createAsyncThunk , createEntityAdapter} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk , createEntityAdapter, nanoid} from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
+import { priceGenerator } from "../../utils/price-generator";
 
 const coffeAdapter = createEntityAdapter();
 
 const initialState = coffeAdapter.getInitialState({
-    coffeeLoadingStatus: 'idle',
-    singleCoffeeLoadingStatus: 'idle'
-})
+    loadingStatus: 'idle',
+    singleloadingStatus: 'idle'
+});
 
 export const fetchCoffeeList = createAsyncThunk(
     'coffee/fetchCoffee',
     async () => {
         const { request } =  useHttp();
-        const response = await request('https://api.sampleapis.com/coffee/hot');        
+        const response = await request('https://api.sampleapis.com/coffee/hot');
         
-        return  response;
+        return response;
     }
-)
-
+);
 
 const coffeeListSlice = createSlice({
     name: 'coffee',
     initialState,
     reducers: {
-        coffeeFetchingError: (state) => { state.coffeeLoadingStatus = 'error'},
+        coffeeFetchingError: (state) => { state.loadingStatus = 'error'},
         coffeeFetching: (state) => {
-            state.coffeeLoadingStatus = 'loading';
-        },
-        coffeeFetched: (state, action) => {
-            coffeAdapter.setAll(state, action.payload)
-            state.coffeeLoadingStatus = 'idle';
+            state.loadingStatus = 'loading';
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCoffeeList.pending, state => {
-                state.coffeeLoadingStatus = 'loading';
+                state.loadingStatus = 'loading';
             })
             .addCase(fetchCoffeeList.fulfilled, (state, action) => {
-                state.coffeeLoadingStatus = 'success';
+                state.loadingStatus = 'success';
+                action.payload.forEach(item => item.price = priceGenerator());
                 coffeAdapter.setAll(state, action.payload)
             }) 
             .addCase(fetchCoffeeList.rejected, state => {
-                state.coffeeLoadingStatus = 'error';
+                state.loadingStatus = 'error';
             })
             .addDefaultCase(() => {});
     }
