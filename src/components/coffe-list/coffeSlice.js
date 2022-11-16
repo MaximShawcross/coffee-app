@@ -10,9 +10,11 @@ const initialState = coffeAdapter.getInitialState({
 
 export const fetchCoffeeList = createAsyncThunk(
     'coffee/fetchCoffee',
-    () => {
-        const { request } = useHttp();
-        return request('https://api.sampleapis.com/coffee/hot') 
+    async () => {
+        const { request } =  useHttp();
+        const response = await request('https://api.sampleapis.com/coffee/hot');        
+        
+        return  response;
     }
 )
 
@@ -35,7 +37,7 @@ const coffeeListSlice = createSlice({
                 state.coffeeLoadingStatus = 'loading';
             })
             .addCase(fetchCoffeeList.fulfilled, (state, action) => {
-                state.coffeeLoadingStatus = 'idle';
+                state.coffeeLoadingStatus = 'success';
                 coffeAdapter.setAll(state, action.payload)
             }) 
             .addCase(fetchCoffeeList.rejected, state => {
@@ -49,7 +51,7 @@ const {actions, reducer} = coffeeListSlice;
 
 export default reducer;
 
-export const { selectAll, selectById } = coffeAdapter.getSelectors(state => state.coffee);
+export const { selectAll, selectById, selectIds } = coffeAdapter.getSelectors(state => state.coffee);
 
 
 export const {

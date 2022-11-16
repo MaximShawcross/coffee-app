@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchCoffeeList } from "./coffeSlice";
+import { fetchCoffeeList, selectIds } from "./coffeSlice";
 
 import CoffeeListItem from "../coffee-list-item/coffee-list-item";
 import Spinner from "../spinner/spinner";
@@ -10,16 +10,17 @@ import Spinner from "../spinner/spinner";
 import './coffee-list.scss';
 
 const CoffeeList = () => {
-    const coffee = useSelector(state => state.coffee);
-    const coffeeLoadingStatus = useSelector(state => state.coffee.coffeeLoadingStatus);
+    const coffee = useSelector(selectIds);
+    let coffeeLoadingStatus = useSelector(state => state.coffee.coffeeLoadingStatus);
     // const coffeItem = useSelector(state => state.coffeItem)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchCoffeeList());
-        // eslint-disable-next-line
-    }, []);
+        if( coffeeLoadingStatus === "idle") {
+            dispatch(fetchCoffeeList());
+        }
+    }, [coffeeLoadingStatus, dispatch]);
 
     if(coffeeLoadingStatus === "loading") {
         return <Spinner/>
@@ -28,26 +29,13 @@ const CoffeeList = () => {
     }
 
 
-    const renderItems = (arr, counter) => {
-        if (arr.length === 0) {
-            return <Spinner/>
-        } 
-        
-        const ids = Object.values(arr.ids);
-        const items = Object.values(arr.entities);
-
-        return items.map((item, i) => {
-
-            if (i < 17) {            
-                const ingredients = item.ingredients[0];
-
-                return (
-                    <Link key = {ids[i]} to = {`/coffee-list/${ids[i]}`} > 
-                        <CoffeeListItem id = {ids[i]}  image = {item.image} title = {item.title} ingredients = {ingredients} />                         
-                    </Link>               
-                )
-            }
-            
+    const renderItems = (arr) => {
+        return arr.map((id) => {           
+            return (
+                <Link to = {`/coffee-list/${id}`} > 
+                    <CoffeeListItem key = {id} coffeeId = {id}  />                         
+                </Link>
+            )                        
         })
     }
 

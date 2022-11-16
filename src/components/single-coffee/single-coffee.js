@@ -24,7 +24,6 @@ const SingleCoffee = () => {
     } 
 
     const {title, description, image} = coffeeItem;
-// 
     return ( <SingleCoffeeView title = {title} description = {description} image = {image} /> );
 }
 
