@@ -55,7 +55,7 @@ export const { selectAll, selectById, selectIds } = coffeAdapter.getSelectors(st
 
 export const filteredCoffee = createSelector(
     selectAll,
-    (state) => state.filter.activeFilter,
+    (state) => state.filters.activeFilter,
     ( coffees, activeFilter ) =>  {
         if (activeFilter === "all") {
             return coffees

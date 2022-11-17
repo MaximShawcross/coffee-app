@@ -14,6 +14,7 @@ const Filter = () => {
                         <FilterButton filterName={"Espresso"}/>
                         <FilterButton filterName={"Milk"}/>
                         <FilterButton filterName={"Foam"}/>
+                        <FilterButton filterName={"all"}/>
                     </div> 
                 </div>
             </div>

@@ -59,7 +59,11 @@ header {
         border-radius: 5px;
         color: white;
         cursor: pointer;
+        &:hover {
+            color: lightgray;        
+        }
     }
+    
 }
 
 .title {

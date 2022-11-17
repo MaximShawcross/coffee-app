@@ -5,7 +5,7 @@ import filterReducer from '../components/filters/filtersSlice';
 const store = configureStore({
     reducer: {
         coffee: coffeeReducer,
-        filter: filterReducer
+        filters: filterReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
 })

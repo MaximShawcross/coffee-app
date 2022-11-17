@@ -1,6 +1,9 @@
-import './footer.scss';
+import { NavLink } from 'react-router-dom';
+
 import threeCoffeeSeeds from '../../resources/icons/three-seeds-black.png';
 import twoCoffeeSeeds from '../../resources/icons/two-seeds-black.png';
+
+import './footer.scss';
 
 const Footer = () => {
     return (
@@ -8,11 +11,16 @@ const Footer = () => {
             <div className="container">
                 <nav className="footer__nav">
                     <div className="footer__nav__item">
-                        <img src = {twoCoffeeSeeds} alt="coffee-seed"/>                        
-                        Coffee house
+                        <NavLink className={({isActive}) => isActive ? 'link' : 'black' } to = "/">
+                            <img src = {twoCoffeeSeeds} alt="coffee-seed"/>                        
+                            Coffee house
+                        </NavLink>
                     </div>
-                    <div className="footer__nav__item">Our coffee</div>
-                    <div className="footer__nav__item">For your pleasure</div>
+                    <div className="footer__nav__item">
+                        <NavLink className={({isActive}) => isActive ? 'link' : 'black' } to = "/coffee-list">
+                            Our coffee
+                        </NavLink>   
+                    </div>
                 </nav>
                 <div className="footer__seeds">
                     <div className="footer__seeds__divider"></div>

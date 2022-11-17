@@ -33,10 +33,12 @@ const MainPageHeader = () => {
                         <div className="header__subheader__item">We makes every day full of energy and taste</div>
                         <div className="header__subheader__item">Want to try our beans?</div>
                     </div>
-
-                    <button className="header__button">
-                        More
-                    </button>
+                    <NavLink className={({isActive}) => isActive ? 'link' : null } to = "/coffee-list">
+                        <button className="header__button">
+                            More
+                        </button>
+                    </NavLink>
+                    
                 </div>
             </div>
         </header>      

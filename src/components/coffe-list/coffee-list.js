@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { filteredCoffee, filteredByTitle } from "./coffeSlice";
+import { filteredCoffee } from "./coffeSlice";
 
 import CoffeeListItem from "../coffee-list-item/coffee-list-item";
 import Spinner from "../spinner/spinner";
@@ -10,7 +10,7 @@ import './coffee-list.scss';
 
 const CoffeeList = () => {
     const filterCoffee = useSelector(filteredCoffee);
-    const coffeeTitleFilter = useSelector(state => state.filter.searchTitle);
+    const coffeeTitleFilter = useSelector(state => state.filters.searchTitle);
     const loadingStatus = useSelector(state => state.coffee.loadingStatus);
 
     if(loadingStatus === "loading") {
