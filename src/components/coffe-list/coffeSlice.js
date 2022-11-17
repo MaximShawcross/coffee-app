@@ -56,16 +56,14 @@ export const { selectAll, selectById, selectIds } = coffeAdapter.getSelectors(st
 export const filteredCoffee = createSelector(
     selectAll,
     (state) => state.filter.activeFilter,
-    (coffees, activeFilter) =>  {
+    ( coffees, activeFilter ) =>  {
         if (activeFilter === "all") {
             return coffees
         } else {
-            return coffees.filter(item => {
-                return item.ingredients.join("").indexOf(activeFilter) > -1;
+            return coffees.filter(coffee => {
+                return coffee.ingredients.join("").indexOf(activeFilter) > -1;
             });
         }
-
-        
     }
 );
 

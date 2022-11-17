@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchCoffeeList, filteredCoffee } from "./coffeSlice";
+import { filteredCoffee, filteredByTitle } from "./coffeSlice";
 
 import CoffeeListItem from "../coffee-list-item/coffee-list-item";
 import Spinner from "../spinner/spinner";
@@ -11,31 +10,33 @@ import './coffee-list.scss';
 
 const CoffeeList = () => {
     const filterCoffee = useSelector(filteredCoffee);
-    let loadingStatus = useSelector(state => state.coffee.loadingStatus);
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        if( loadingStatus === "idle") {
-            dispatch(fetchCoffeeList());
-        }
-
-    }, [loadingStatus, dispatch]);
+    const coffeeTitleFilter = useSelector(state => state.filter.searchTitle);
+    const loadingStatus = useSelector(state => state.coffee.loadingStatus);
 
     if(loadingStatus === "loading") {
         return <Spinner/>
-    } else if (loadingStatus === "error"){
+    } else if (loadingStatus === "error") {
         return <h5 className = "error">something wrong!</h5>
     }
 
-
     const renderItems = (arr) => {
-        return arr.map((coffee) => {
-            return (
-                <Link key = {coffee.id} to = {`/coffee-list/${coffee.id}`} > 
-                    <CoffeeListItem id = {coffee.id} coffeeId = {coffee.id}  />                         
-                </Link>               
-            )
-        })
+        if (coffeeTitleFilter.length === 0) {
+            return arr.map((coffee) => {
+                return (
+                    <Link key = {coffee.id} to = {`/coffee-list/${coffee.id}`} > 
+                        <CoffeeListItem id = {coffee.id} coffeeId = {coffee.id}  />                         
+                    </Link>               
+                )
+            })
+        }
+
+        let filteredByTitleList = arr.filter(coffee => (coffee.title).toLowerCase().indexOf(coffeeTitleFilter) > -1);
+
+        return filteredByTitleList.map((coffee) => (
+            <Link key = {coffee.id} to = {`/coffee-list/${coffee.id}`} > 
+                <CoffeeListItem id = {coffee.id} coffeeId = {coffee.id}  />                         
+            </Link>               
+        ))
     }
 
     const elements = renderItems(filterCoffee);
