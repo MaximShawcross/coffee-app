@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk , createEntityAdapter, nanoid} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk , createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
 import { priceGenerator } from "../../utils/price-generator";
 
@@ -51,8 +51,23 @@ export default reducer;
 
 export const { selectAll, selectById, selectIds } = coffeAdapter.getSelectors(state => state.coffee);
 
+// const sortedCofee = createSelector([])
 
+export const filteredCoffee = createSelector(
+    selectAll,
+    (state) => state.filter.activeFilter,
+    (coffees, activeFilter) =>  {
+        if (activeFilter === "all") {
+            return coffees
+        } else {
+            return coffees.filter(item => {
+                return item.ingredients.join("").indexOf(activeFilter) > -1;
+            });
+        }
 
+        
+    }
+);
 
 export const {
     coffeeFetchingError,

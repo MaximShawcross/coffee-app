@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import coffee from '../components/coffe-list/coffeSlice';
+import coffeeReducer from '../components/coffe-list/coffeSlice';
+import filterReducer from '../components/filters/filtersSlice';
 
 const store = configureStore({
-    reducer: {coffee},
+    reducer: {
+        coffee: coffeeReducer,
+        filter: filterReducer
+    },
     devTools: process.env.NODE_ENV !== 'production',
 })
- 
-export {coffee};
+
 
 export default store;
